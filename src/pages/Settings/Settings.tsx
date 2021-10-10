@@ -6,6 +6,7 @@ import HeaderCI from '../../areas/HeaderCI/HeaderCI'
 import FormField from '../../components/FormField/FormField'
 import FormInteger from '../../components/FormInteger/FormInteger'
 import Button from '../../components/Button/Button'
+import { isDigit } from '../../common/isDigit'
 
 import './Settings.css'
 
@@ -72,7 +73,8 @@ const Settings = (props: Props) => {
     if (
       state.buildCmd === '' ||
       state.githubRepo === '' ||
-      state.mainBranch === ''
+      state.mainBranch === '' ||
+      (state.syncInterval && !isDigit(state.syncInterval))
     ) {
       dispatch({ type: 'SET_WITH_ERRORS' })
       return false
@@ -127,6 +129,11 @@ const Settings = (props: Props) => {
           rightText="minutes"
           placeholder="10"
           onChange={handleChange('syncInterval')}
+          withError={
+            state.withErrors &&
+            state.syncInterval !== '' &&
+            !isDigit(state.syncInterval)
+          }
         />
         <div className="p-settings_buttons">
           <Button onClick={runBuildHandler} type="action">
