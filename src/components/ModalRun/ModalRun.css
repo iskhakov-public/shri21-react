@@ -1,0 +1,35 @@
+.modal-run {
+    width: 400px;
+}
+
+.modal-run > h2 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.modal-run_buttons {
+    display: flex;
+    margin-top: 10px;
+}
+
+.modal-run_buttons > * {
+    margin-right: 8px;
+}
+
+.modal-run_error {
+    color: var(--red-500);
+}
+
+@media (max-width: 550px) {
+    .modal-run {
+        width: 70vw;
+    }
+
+    .modal-run_buttons {
+        flex-direction: column;
+    }
+
+    .modal-run_buttons > * {
+        margin-bottom: 8px;
+    }
+}

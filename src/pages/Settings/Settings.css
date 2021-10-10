@@ -1,0 +1,48 @@
+.p-settings {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.p-settings_main {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.p-settings_main .form-field {
+    margin-bottom: 18px;
+}
+
+.p-settings_title {
+    margin: 18px 0 8px 0;
+}
+
+.p-settings_description {
+    margin-bottom: 22px;
+}
+
+.p-settings_buttons {
+    margin-top: 24px;
+    display: flex;
+}
+
+.p-settings_buttons > button {
+    margin-right: 8px;
+}
+
+.p-settings_input-error {
+    border-color: var(--red-500);
+}
+
+@media (max-width: 550px) {
+    .p-settings_buttons {
+        margin-top: 20px;
+        margin-bottom: 6px;
+        flex-direction: column;
+    }
+
+    .p-settings_buttons > button {
+        margin: 6px 0;
+    }
+
+}

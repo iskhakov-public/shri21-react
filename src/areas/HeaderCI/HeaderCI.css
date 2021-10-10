@@ -1,0 +1,31 @@
+.a-header-ci {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.a-header-ci_title {
+    font-size: 24px;
+    line-height: 28px;
+    color: var(--blue-grey-500)
+}
+
+.a-header-ci_buttons {
+    display: flex;
+}
+
+.a-header-ci button {
+    margin-left: 8px;
+}
+
+@media (max-width: 500px) {
+    .a-header-ci {
+        align-items: flex-start;
+    }
+
+    .a-header-ci_buttons {
+        margin-top: 5px;
+    }
+}

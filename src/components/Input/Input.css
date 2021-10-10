@@ -1,0 +1,46 @@
+@import "../../index.css";
+
+
+.input_wrapper {
+    position: relative;
+}
+
+.input {
+    box-sizing: border-box;
+    padding: 10px 13px;
+    background-color: #fff;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+    height: 36px;
+    width: 100%;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--input-border-focus);
+}
+
+.input_clear-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 10px;
+    margin: auto;
+    border: none;
+    visibility: hidden;
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    outline: none;
+    cursor: pointer;
+    transition: visibility 0s, opacity 0.3s linear;
+}
+
+.input_clear-icon-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.input_error {
+    border: 2px solid var(--red-500);
+}

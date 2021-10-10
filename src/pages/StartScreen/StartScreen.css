@@ -1,0 +1,11 @@
+.p-start-screen {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.p-start-screen_main {
+    flex-grow: 1;
+    display: flex;
+    align-items: stretch;
+}

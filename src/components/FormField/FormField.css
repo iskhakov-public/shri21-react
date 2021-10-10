@@ -1,0 +1,17 @@
+@import "../../index.css";
+
+.form-field {
+    line-height: 18px;
+}
+
+.form-field_text {
+    display: inline-block;
+    margin: 0;
+    margin-bottom: 6px;
+    line-height: 18px;
+}
+
+.form-field_required-star {
+    color: var(--red-500);
+    margin-left: 2px;
+}

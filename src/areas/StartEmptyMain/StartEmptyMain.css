@@ -1,0 +1,20 @@
+.a-start-empty-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.a-start-empty-main_text {
+    margin-top: 32px;
+    margin-bottom: 24px;
+}
+
+.a-start-empty-main_wrapper {
+    margin: 2rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

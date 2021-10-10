@@ -1,0 +1,31 @@
+.a-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+
+}
+
+.a-footer_ul {
+    margin: 0;
+    padding: 0;
+}
+
+.a-footer_ul > li {
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.a-footer_wrapper {
+    background-color: var(--blue-grey-50);
+    color: var(--blue-grey-500);
+}
+
+@media (max-width: 400px) {
+    .a-footer {
+        display: block;
+    }
+    .a-footer_ul {
+        margin-bottom: 8px;
+    }
+}
