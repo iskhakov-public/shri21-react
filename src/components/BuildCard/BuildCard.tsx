@@ -3,6 +3,9 @@ import cn from 'classnames'
 import { format, formatDuration, intervalToDuration } from 'date-fns'
 import { ru } from 'date-fns/locale'
 
+import { useWindowSize } from '../../hooks/useWindowSize'
+import { IBuild } from '../../type'
+
 import './BuildCard.css'
 
 import { ReactComponent as DoneIcon } from './icons/done.svg'
@@ -12,21 +15,9 @@ import { ReactComponent as CommitIcon } from './icons/code-commit.svg'
 import { ReactComponent as UserIcon } from './icons/user.svg'
 import { ReactComponent as CalendarIcon } from './icons/calendar.svg'
 import { ReactComponent as WatchIcon } from './icons/stopwatch.svg'
-import { useWindowSize } from '../../hooks/useWindowSize'
-
-export type BuildInfo = {
-  status: 'ok' | 'pending' | 'fail'
-  buildNum: number
-  description: string
-  branch: string
-  commit: string
-  user: string
-  date: Date
-  durationSeconds: number
-}
 
 interface Props {
-  buildInfo: BuildInfo
+  buildInfo: IBuild
   cls?: string
 }
 

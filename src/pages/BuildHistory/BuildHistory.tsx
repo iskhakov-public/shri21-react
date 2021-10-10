@@ -1,51 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import Modal from 'react-modal'
 import { useHistory } from 'react-router'
+import { Dispatch } from 'redux'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
+import { BuildState, IBuild } from '../../type'
 import Footer from '../../areas/Footer/Footer'
 import HeaderCI from '../../areas/HeaderCI/HeaderCI'
-import BuildCard, { BuildInfo } from '../../components/BuildCard/BuildCard'
+import BuildCard from '../../components/BuildCard/BuildCard'
 import ModalRun from '../../components/ModalRun/ModalRun'
+import Button from '../../components/Button/Button'
 import { ActionType } from '../../components/ActionButton/ActionButton'
+import { addBuild } from '../../store/actionCreators'
 
 import './BuildHistory.css'
-import Button from '../../components/Button/Button'
-import { element } from 'prop-types'
 
 interface Props {}
-
-let buildInfo: BuildInfo[] = [
-  {
-    status: 'ok',
-    buildNum: 1234,
-    branch: 'master',
-    commit: '9c9f0b9',
-    description: 'add documentation for postgres scaler',
-    user: 'Philip Kirkorov',
-    date: new Date(),
-    durationSeconds: 80 * 60,
-  },
-  {
-    status: 'pending',
-    buildNum: 1189,
-    branch: 'super-cool-ui-kit',
-    commit: 'b4636ab',
-    description: "Merge branch 'master' of github.com:jaywcjlove/awesome",
-    user: 'Vadim Makeev',
-    date: new Date(),
-    durationSeconds: 80 * 60,
-  },
-  {
-    status: 'fail',
-    buildNum: 1174,
-    branch: 'master',
-    commit: 'b4636ab',
-    description: 'upgrade typescript to 3.8',
-    user: 'Philip Kirkorov',
-    date: new Date(),
-    durationSeconds: 80 * 60,
-  },
-]
 
 const customStyles = {
   content: {
@@ -60,10 +30,15 @@ const customStyles = {
 }
 
 const BuildHistory = (props: Props) => {
-  const [buildstate, setBuildstate] = useState(buildInfo)
+  const dispatch: Dispatch<any> = useDispatch()
   const [showNum, setShowNum] = useState(8)
   const [isOpen, setIsOpen] = useState(false)
   const history = useHistory()
+
+  const builds: readonly IBuild[] = useSelector(
+    (state: BuildState) => state.builds,
+    shallowEqual,
+  )
 
   let isStart = true
   const actions = [
@@ -82,12 +57,10 @@ const BuildHistory = (props: Props) => {
     setShowNum(showNum + 3)
   }
 
-  const handleRunBuild = (hash: string) => {
-    const newBuild = buildInfo[Math.floor(Math.random() * buildInfo.length)]
-    newBuild.commit = hash
-    newBuild.date = new Date()
-    setBuildstate([newBuild, ...buildstate])
-  }
+  const handleRunBuild = useCallback(
+    (commitHash: string) => dispatch(addBuild(commitHash)),
+    [dispatch, addBuild],
+  )
 
   return (
     <div className="p-build-history">
@@ -98,12 +71,12 @@ const BuildHistory = (props: Props) => {
         text="philip1967/my-awesome-repo"
       />
       <main className="container p-build-history_main">
-        {buildstate
+        {builds
           .map((elem) => (
             <BuildCard cls="p-build-history_build" buildInfo={elem} />
           ))
           .slice(0, showNum)}
-        {showNum < buildstate.length && (
+        {showNum < builds.length && (
           <Button
             onClick={handleShowMoreClick}
             cls="p-build-history_show-more-btn"
